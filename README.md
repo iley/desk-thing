@@ -3,8 +3,9 @@
 Building:
 
 ```bash
-mkdir -p build && (cd build && cmake ..)
-make -C build
+mkdir -p build && cd build
+cmake ..
+make
 ```
 
 Flashing:
