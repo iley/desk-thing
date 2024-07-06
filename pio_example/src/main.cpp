@@ -4,8 +4,10 @@
 #include <Wire.h>
 
 // Make sure to define U8G2_16BIT.
-// U8G2_SSD1322_NHD_256X64_1_4W_SW_SPI u8g2(U8G2_R0, /*SCLK=*/18, /* MOSI=*/19, /*CS=*/16, /*DC=*/15, /*RST=*/14);
-U8G2_SSD1322_NHD_256X64_1_4W_HW_SPI u8g2(U8G2_R0, /*CS=*/16, /*DC=*/15, /*RST=*/14);
+U8G2_SSD1322_NHD_256X64_1_4W_SW_SPI u8g2(U8G2_R0, /*SCLK=*/18, /* MOSI=*/19,
+                                         /*CS=*/16, /*DC=*/15, /*RST=*/14);
+// U8G2_SSD1322_NHD_256X64_1_4W_HW_SPI u8g2(U8G2_R0, /*CS=*/16, /*DC=*/15,
+// /*RST=*/14);
 
 void setup(void) {
   Serial.begin(115200);
