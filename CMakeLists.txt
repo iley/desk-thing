@@ -11,3 +11,4 @@ pico_sdk_init()
 add_compile_definitions(PICO_STDIO_USB_ENABLE_RESET_VIA_BAUD_RATE=1)
 
 add_subdirectory(src)
+add_subdirectory(vendor/u8g2)
