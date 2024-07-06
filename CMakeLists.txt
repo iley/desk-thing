@@ -9,6 +9,7 @@ project(desk_thing)
 pico_sdk_init()
 
 add_compile_definitions(PICO_STDIO_USB_ENABLE_RESET_VIA_BAUD_RATE=1)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections -Wl,--gc-sections")
 
 add_subdirectory(src)
 add_subdirectory(vendor/u8g2)
