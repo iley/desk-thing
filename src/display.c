@@ -1,9 +1,6 @@
-#include <stdio.h>
-#include <string.h>
-
-#include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "hardware/spi.h"
+#include "pico/stdlib.h"
 
 #include <u8g2.h>
 
@@ -13,7 +10,8 @@
 
 u8g2_t u8g2;
 
-uint8_t u8x8_byte_pico_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr) {
+uint8_t u8x8_byte_pico_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
+                              void *arg_ptr) {
   uint8_t *data;
   switch (msg) {
   case U8X8_MSG_BYTE_SEND:
@@ -28,7 +26,8 @@ uint8_t u8x8_byte_pico_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
     break;
   case U8X8_MSG_BYTE_START_TRANSFER:
     u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_enable_level);
-    u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO, u8x8->display_info->post_chip_enable_wait_ns, NULL);
+    u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO,
+                            u8x8->display_info->post_chip_enable_wait_ns, NULL);
     break;
   case U8X8_MSG_BYTE_END_TRANSFER:
     u8x8->gpio_and_delay_cb(u8x8, U8X8_MSG_DELAY_NANO,
@@ -41,9 +40,10 @@ uint8_t u8x8_byte_pico_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *
   return 1;
 }
 
-uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg,uint8_t arg_int, void *arg_ptr) {
+uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
+                                 void *arg_ptr) {
   switch (msg) {
-  case U8X8_MSG_GPIO_AND_DELAY_INIT: 
+  case U8X8_MSG_GPIO_AND_DELAY_INIT:
     spi_init(SPI_PORT, SPI_SPEED);
     gpio_set_function(PIN_CS, GPIO_FUNC_SIO);
     gpio_set_function(PIN_SCK, GPIO_FUNC_SPI);
@@ -57,9 +57,10 @@ uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg,uint8_t arg_int, void
     gpio_put(PIN_RST, 1);
     gpio_put(PIN_CS, 1);
     gpio_put(PIN_DC, 0);
-    break;                  
+    break;
   case U8X8_MSG_DELAY_NANO: // delay arg_int * 1 nano second
-    sleep_us(arg_int); // 1000 times slower, though generally fine in practice given rp2040 has no `sleep_ns()`
+    sleep_us(arg_int); // 1000 times slower, though generally fine in practice
+                       // given rp2040 has no `sleep_ns()`
     break;
   case U8X8_MSG_DELAY_100NANO: // delay arg_int * 100 nano seconds
     sleep_us(arg_int);
@@ -76,8 +77,8 @@ uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg,uint8_t arg_int, void
   case U8X8_MSG_GPIO_DC: // DC (data/cmd, A0, register select) pin: Output level
     gpio_put(PIN_DC, arg_int);
     break;
-  case U8X8_MSG_GPIO_RESET: // Reset pin: Output level in arg_int
-    gpio_put(PIN_RST, arg_int);  // printf("U8X8_MSG_GPIO_RESET %d\n", arg_int);
+  case U8X8_MSG_GPIO_RESET:     // Reset pin: Output level in arg_int
+    gpio_put(PIN_RST, arg_int); // printf("U8X8_MSG_GPIO_RESET %d\n", arg_int);
     break;
   default:
     u8x8_SetGPIOResult(u8x8, 1); // default return value
@@ -87,7 +88,9 @@ uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg,uint8_t arg_int, void
 }
 
 void display_init() {
-  u8g2_Setup_ssd1322_nhd_256x64_1(&u8g2, U8G2_R0, u8x8_byte_pico_hw_spi, u8x8_gpio_and_delay_pico);
-  u8g2_InitDisplay(&u8g2); // Send init sequence to the display. Display is in sleep mode after this.
+  u8g2_Setup_ssd1322_nhd_256x64_1(&u8g2, U8G2_R0, u8x8_byte_pico_hw_spi,
+                                  u8x8_gpio_and_delay_pico);
+  u8g2_InitDisplay(&u8g2); // Send init sequence to the display. Display is in
+                           // sleep mode after this.
   u8g2_SetPowerSave(&u8g2, 0);
 }
