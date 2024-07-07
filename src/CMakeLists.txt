@@ -1,6 +1,7 @@
 add_executable(desk_thing
     main.c
     display.c
+    sleep.c
 )
 
 target_link_libraries(desk_thing

@@ -1,10 +1,12 @@
+#include "display.h"
+
 #include "hardware/gpio.h"
 #include "hardware/spi.h"
 #include "pico/stdlib.h"
 
 #include <u8g2.h>
 
-#include "display.h"
+#include "sleep.h"
 
 // Based on code by @nordseele (https://github.com/olikraus/u8g2/issues/2159)
 
@@ -58,13 +60,14 @@ uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
     gpio_put(PIN_CS, 1);
     gpio_put(PIN_DC, 0);
     break;
-  case U8X8_MSG_DELAY_NANO: // delay arg_int * 1 nano second
-    sleep_us(arg_int); // 1000 times slower, though generally fine in practice
-                       // given rp2040 has no `sleep_ns()`
+  case U8X8_MSG_DELAY_NANO: { // delay arg_int * 1 nano second
+    sleep_ns(arg_int);
     break;
-  case U8X8_MSG_DELAY_100NANO: // delay arg_int * 100 nano seconds
-    sleep_us(arg_int);
+  }
+  case U8X8_MSG_DELAY_100NANO: { // delay arg_int * 100 nano seconds
+    sleep_ns(arg_int * 100);
     break;
+  }
   case U8X8_MSG_DELAY_10MICRO: // delay arg_int * 10 micro seconds
     sleep_us(arg_int * 10);
     break;

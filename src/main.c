@@ -5,6 +5,7 @@
 #include "pico/stdlib.h"
 
 #include "display.h"
+#include "sleep.h"
 
 void draw(unsigned int offset) {
   static char *message = "Hello World!";
