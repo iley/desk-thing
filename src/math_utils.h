@@ -1,6 +1,8 @@
 #ifndef _MATH_UTILS_H
 #define _MATH_UTILS_H
 
+#include <stdint.h>
+
 inline uint64_t uint64_div_ceil(uint64_t a, uint64_t b) {
   return (a - 1) / b + 1;
 }

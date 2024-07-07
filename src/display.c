@@ -17,11 +17,10 @@ static const unsigned int kPinDC = 4;
 static const unsigned int kPinRST = 11;
 static const unsigned int kPinCS = 5;
 
-// Based on code by @nordseele (https://github.com/olikraus/u8g2/issues/2159)
-
 u8g2_t u8g2;
 
-uint8_t u8x8_byte_pico_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
+// Based on code by @nordseele (https://github.com/olikraus/u8g2/issues/2159)
+static uint8_t u8x8_byte_pico_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
                               void *arg_ptr) {
   uint8_t *data;
   switch (msg) {
@@ -51,7 +50,7 @@ uint8_t u8x8_byte_pico_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
   return 1;
 }
 
-uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
+static uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
                                  void *arg_ptr) {
   switch (msg) {
   case U8X8_MSG_GPIO_AND_DELAY_INIT:
