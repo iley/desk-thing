@@ -8,6 +8,15 @@
 
 #include "sleep.h"
 
+// According to the datasheet, SSD1322's maximum SPI speed is 10 MHz.
+static const unsigned int kSpiSpeed = 10 * 1e6;
+
+static const unsigned int kPinSCK = 2;
+static const unsigned int kPinMOSI = 3;
+static const unsigned int kPinDC = 4;
+static const unsigned int kPinRST = 11;
+static const unsigned int kPinCS = 5;
+
 // Based on code by @nordseele (https://github.com/olikraus/u8g2/issues/2159)
 
 u8g2_t u8g2;
@@ -18,7 +27,7 @@ uint8_t u8x8_byte_pico_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
   switch (msg) {
   case U8X8_MSG_BYTE_SEND:
     data = (uint8_t *)arg_ptr;
-    spi_write_blocking(SPI_PORT, data, arg_int);
+    spi_write_blocking(DISPLAY_SPI_PORT, data, arg_int);
     break;
   case U8X8_MSG_BYTE_INIT:
     u8x8_gpio_SetCS(u8x8, u8x8->display_info->chip_disable_level);
@@ -46,19 +55,19 @@ uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
                                  void *arg_ptr) {
   switch (msg) {
   case U8X8_MSG_GPIO_AND_DELAY_INIT:
-    spi_init(SPI_PORT, SPI_SPEED);
-    gpio_set_function(PIN_CS, GPIO_FUNC_SIO);
-    gpio_set_function(PIN_SCK, GPIO_FUNC_SPI);
-    gpio_set_function(PIN_MOSI, GPIO_FUNC_SPI);
-    gpio_init(PIN_RST);
-    gpio_init(PIN_DC);
-    gpio_init(PIN_CS);
-    gpio_set_dir(PIN_RST, GPIO_OUT);
-    gpio_set_dir(PIN_DC, GPIO_OUT);
-    gpio_set_dir(PIN_CS, GPIO_OUT);
-    gpio_put(PIN_RST, 1);
-    gpio_put(PIN_CS, 1);
-    gpio_put(PIN_DC, 0);
+    spi_init(DISPLAY_SPI_PORT, kSpiSpeed);
+    gpio_set_function(kPinCS, GPIO_FUNC_SIO);
+    gpio_set_function(kPinSCK, GPIO_FUNC_SPI);
+    gpio_set_function(kPinMOSI, GPIO_FUNC_SPI);
+    gpio_init(kPinRST);
+    gpio_init(kPinDC);
+    gpio_init(kPinCS);
+    gpio_set_dir(kPinRST, GPIO_OUT);
+    gpio_set_dir(kPinDC, GPIO_OUT);
+    gpio_set_dir(kPinCS, GPIO_OUT);
+    gpio_put(kPinRST, 1);
+    gpio_put(kPinCS, 1);
+    gpio_put(kPinDC, 0);
     break;
   case U8X8_MSG_DELAY_NANO: { // delay arg_int * 1 nano second
     sleep_ns(arg_int);
@@ -75,13 +84,13 @@ uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
     sleep_ms(arg_int);
     break;
   case U8X8_MSG_GPIO_CS: // CS (chip select) pin: Output level in arg_int
-    gpio_put(PIN_CS, arg_int);
+    gpio_put(kPinCS, arg_int);
     break;
   case U8X8_MSG_GPIO_DC: // DC (data/cmd, A0, register select) pin: Output level
-    gpio_put(PIN_DC, arg_int);
+    gpio_put(kPinDC, arg_int);
     break;
   case U8X8_MSG_GPIO_RESET:     // Reset pin: Output level in arg_int
-    gpio_put(PIN_RST, arg_int); // printf("U8X8_MSG_GPIO_RESET %d\n", arg_int);
+    gpio_put(kPinRST, arg_int); // printf("U8X8_MSG_GPIO_RESET %d\n", arg_int);
     break;
   default:
     u8x8_SetGPIOResult(u8x8, 1); // default return value

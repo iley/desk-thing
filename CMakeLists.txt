@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.13)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_C_STANDARD 17)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 
 include(vendor/pico-sdk/pico_sdk_init.cmake)
 
