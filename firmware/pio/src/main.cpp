@@ -23,15 +23,5 @@ void loop(void) {
     u8g2.drawStr(0, 24, "Hello World!");
   } while (u8g2.nextPage());
 
-  Serial.print("MOSI: ");
-  Serial.println(MOSI);
-  Serial.print("MISO: ");
-  Serial.println(MISO);
-  Serial.print(" SCK: ");
-  Serial.println(SCK);
-  Serial.print("  SS: ");
-  Serial.println(SS);
-  Serial.println();
-
   delay(1000);
 }
