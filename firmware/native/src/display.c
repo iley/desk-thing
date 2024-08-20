@@ -8,8 +8,9 @@
 
 #include "sleep.h"
 
-// According to the datasheet, SSD1322's maximum SPI speed is 10 MHz.
-static const unsigned int kSpiSpeed = 10 * 1e6;
+// According to the datasheet, SSD1322's maximum SPI speed is 10 MHz, but we're
+// using 5 MHz to be on the safe side.
+static const unsigned int kSpiSpeed = 5 * 1e6;
 
 static const unsigned int kPinSCK = 2;
 static const unsigned int kPinMOSI = 3;
@@ -21,7 +22,7 @@ u8g2_t u8g2;
 
 // Based on code by @nordseele (https://github.com/olikraus/u8g2/issues/2159)
 static uint8_t u8x8_byte_pico_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
-                              void *arg_ptr) {
+                                     void *arg_ptr) {
   uint8_t *data;
   switch (msg) {
   case U8X8_MSG_BYTE_SEND:
@@ -50,8 +51,8 @@ static uint8_t u8x8_byte_pico_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
   return 1;
 }
 
-static uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int,
-                                 void *arg_ptr) {
+static uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg,
+                                        uint8_t arg_int, void *arg_ptr) {
   switch (msg) {
   case U8X8_MSG_GPIO_AND_DELAY_INIT:
     spi_init(DISPLAY_SPI_PORT, kSpiSpeed);
@@ -99,7 +100,7 @@ static uint8_t u8x8_gpio_and_delay_pico(u8x8_t *u8x8, uint8_t msg, uint8_t arg_i
 }
 
 void display_init() {
-  u8g2_Setup_ssd1322_nhd_256x64_f(&u8g2, U8G2_R0, u8x8_byte_pico_hw_spi,
+  u8g2_Setup_ssd1322_nhd_256x64_f(&u8g2, U8G2_R2, u8x8_byte_pico_hw_spi,
                                   u8x8_gpio_and_delay_pico);
   u8g2_InitDisplay(&u8g2); // Send init sequence to the display. Display is in
                            // sleep mode after this.
