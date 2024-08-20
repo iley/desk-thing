@@ -5,6 +5,127 @@
 	(uuid "9191b4e7-8143-4f5d-9ea3-848b5b9a7eb0")
 	(paper "A4")
 	(lib_symbols
+		(symbol "Device:R"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Device:RotaryEncoder_Switch"
 			(pin_names
 				(offset 0.254) hide)
@@ -2102,6 +2223,16 @@
 	)
 	(wire
 		(pts
+			(xy 88.9 120.65) (xy 99.06 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c5a87ea-97a0-46df-9fe1-34f344adcb69")
+	)
+	(wire
+		(pts
 			(xy 74.93 120.65) (xy 78.74 120.65)
 		)
 		(stroke
@@ -2202,6 +2333,16 @@
 	)
 	(wire
 		(pts
+			(xy 88.9 156.21) (xy 99.06 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb5162b1-b7ea-44cd-97f6-b319c09bf92b")
+	)
+	(wire
+		(pts
 			(xy 109.22 43.18) (xy 121.92 43.18)
 		)
 		(stroke
@@ -2290,6 +2431,16 @@
 		)
 		(uuid "f7dc6ec4-e69b-4e19-ae33-1f3c040d375e")
 	)
+	(wire
+		(pts
+			(xy 88.9 138.43) (xy 99.06 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff0805e5-c0db-4cda-9df4-5348b7744679")
+	)
 	(label "OLED_CS"
 		(at 73.66 48.26 180)
 		(fields_autoplaced yes)
@@ -2302,7 +2453,7 @@
 		(uuid "06c33803-49e2-42e5-b2a0-c50e2e37aa82")
 	)
 	(label "LED2"
-		(at 88.9 138.43 0)
+		(at 106.68 138.43 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2379,7 +2530,7 @@
 		(uuid "2cccb91a-bfc8-4ffd-8b58-b8458e1828f4")
 	)
 	(label "LED3"
-		(at 88.9 156.21 0)
+		(at 106.68 156.21 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2577,7 +2728,7 @@
 		(uuid "de69061e-dc26-4c2b-9895-24482ea9cc7e")
 	)
 	(label "LED1"
-		(at 88.9 120.65 0)
+		(at 106.68 120.65 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2997,6 +3148,74 @@
 			(project "desk_thing_v1"
 				(path "/9191b4e7-8143-4f5d-9ea3-848b5b9a7eb0"
 					(reference "#PWR016")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 102.87 156.21 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "28c6c08c-8b9d-4196-bb0f-5526caca6ae3")
+		(property "Reference" "R3"
+			(at 102.87 149.86 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 102.87 152.4 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
+			(at 102.87 157.988 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 102.87 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 102.87 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "429c04b1-e5cd-4f6b-974d-8e9f6950832c")
+		)
+		(pin "2"
+			(uuid "30d439cc-320b-456b-957d-c67b9607a703")
+		)
+		(instances
+			(project "desk_thing_v1"
+				(path "/9191b4e7-8143-4f5d-9ea3-848b5b9a7eb0"
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -3537,6 +3756,74 @@
 			(project "desk_thing_v1"
 				(path "/9191b4e7-8143-4f5d-9ea3-848b5b9a7eb0"
 					(reference "#PWR04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 102.87 120.65 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9aeee585-b8d4-4873-aa59-58c5cb3d82b3")
+		(property "Reference" "R1"
+			(at 102.87 114.3 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 102.87 116.84 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
+			(at 102.87 122.428 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 102.87 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 102.87 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b928eccf-e1da-4213-b487-015a6eebcb00")
+		)
+		(pin "2"
+			(uuid "07058967-de51-4961-8a89-31401c236792")
+		)
+		(instances
+			(project ""
+				(path "/9191b4e7-8143-4f5d-9ea3-848b5b9a7eb0"
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -4157,6 +4444,74 @@
 			(project "desk_thing_v1"
 				(path "/9191b4e7-8143-4f5d-9ea3-848b5b9a7eb0"
 					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 102.87 138.43 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ec9643a9-0cc6-474a-a401-332e9f61cdbe")
+		(property "Reference" "R2"
+			(at 102.87 132.08 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 102.87 134.62 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
+			(at 102.87 140.208 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 102.87 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 102.87 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "01c2d008-1da9-45b9-a311-a268d55a0f79")
+		)
+		(pin "2"
+			(uuid "904f6858-29db-47ef-9dd1-72d1c7859474")
+		)
+		(instances
+			(project "desk_thing_v1"
+				(path "/9191b4e7-8143-4f5d-9ea3-848b5b9a7eb0"
+					(reference "R2")
 					(unit 1)
 				)
 			)
